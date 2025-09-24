@@ -1,0 +1,15 @@
+{% extends "index.html" %}
+{% block content %}
+<h1>Danh Sách Sản Phẩm</h1>
+<div style="display: flex; flex-wrap: wrap; gap: 20px;">
+    {% for product in products %}
+        <div style="border: 1px solid #ccc; padding: 10px; width: 200px;">
+            <img src="{{ url_for('static', filename='images/khongcoanh.png') }}" alt="Product Image" style="width: 100%; height: auto;">
+            <h3>{{ product.product_name }}</h3> <!-- Thay đổi vì: Truy cập product_name từ dictionary thay vì product[1]. -->
+            <p>Giá: ${{ product.unit_price | round(2) }}</p> <!-- Thay đổi vì: Truy cập unit_price từ dictionary. -->
+            <p>Tồn kho: {{ product.units_in_stock }}</p> <!-- Thay đổi vì: Truy cập units_in_stock từ dictionary. -->
+            <a href="{{ url_for('product_detail', product_id=product.product_id) }}">Xem chi tiết</a> <!-- Thay đổi vì: Truy cập product_id từ dictionary. -->
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
